@@ -26,6 +26,7 @@ ALLOWED_HOSTS = ["*"]
 # Comment out the following line and place your railway URL, and your production URL in the array.
 # CSRF_TRUSTED_ORIGINS = ["*"]
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
@@ -36,20 +37,25 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'restaurant',
     "rest_framework",
     "corsheaders",
+    'djoser',
+    'rest_framework.authtoken',
+    'whitenoise.runserver_nostatic'
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = "main.urls"
@@ -84,7 +90,18 @@ DATABASES = {
         "PASSWORD": os.environ["PGPASSWORD"],
         "HOST": os.environ["PGHOST"],
         "PORT": os.environ["PGPORT"],
-    }
+    },
+    'little_lemon': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'littlelemon_database',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'USER': 'admindjango',
+            'PASSWORD': 'employee@123!',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            }
+        },
 }
 
 
@@ -130,3 +147,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+DJOSER = {
+    'USER_ID_FIELD' : 'username'
+}
+
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

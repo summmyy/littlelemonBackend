@@ -5,6 +5,7 @@ when you are in your local environment.
 
 import os
 from pathlib import Path
+import secrets
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,6 +22,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 # Application definition
 
@@ -31,20 +34,26 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'restaurant',
     "rest_framework",
     "corsheaders",
+    'djoser',
+    'rest_framework.authtoken',
+    'tests',
+    'whitenoise.runserver_nostatic'
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = "main.urls"
@@ -75,7 +84,18 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
+    },
+    'little_lemon': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'littlelemon_database',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'USER': 'admindjango',
+            'PASSWORD': 'employee@123!',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            }
+        },
 }
 
 
@@ -121,3 +141,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+DJOSER = {
+    'USER_ID_FIELD' : 'username'
+}
+
+TEST_DISCOVER_PATTERN = [
+    'test_models',
+    'test_views'
+]
+
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

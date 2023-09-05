@@ -1,0 +1,3 @@
+'admin: lluser, password: lemon@123!'
+
+user: jdoe/jdoe@email.com, password: lemon123
