@@ -31,7 +31,7 @@ urlpatterns = [
     path('restaurant/booking/',include(router.urls)),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
+    path(settings.MEDIA_URL, include(settings.MEDIA_ROOT)),
     # path('media/', include(settings.Media_URL)),
 ]
 
