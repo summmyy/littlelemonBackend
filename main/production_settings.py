@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework.authtoken',
     'whitenoise.runserver_nostatic',
-    'media'
+    'media/menu-images'
 ]
 
 MIDDLEWARE = [
