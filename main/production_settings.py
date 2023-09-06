@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "corsheaders",
     'djoser',
     'rest_framework.authtoken',
-    'whitenoise.runserver_nostatic'
+    'whitenoise.runserver_nostatic',
+    'media'
 ]
 
 MIDDLEWARE = [
