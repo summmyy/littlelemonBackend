@@ -31,14 +31,12 @@ urlpatterns = [
     path('restaurant/booking/',include(router.urls)),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path(settings.MEDIA_URL, include(settings.MEDIA_ROOT)),
-    # path('media/', include(settings.Media_URL)),
 ]
 
 # for development server
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# # for production server
-# if production_settings.DEBUG:
-#     urlpatterns += static(production_settings.MEDIA_URL, document_root=production_settings.MEDIA_ROOT)
+# for production server
+if settings.DEBUG == False:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
