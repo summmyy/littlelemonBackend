@@ -24,7 +24,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 # Comment out the following line and place your railway URL, and your production URL in the array.
-CSRF_TRUSTED_ORIGINS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://littlelemon.up.railway.app/"]
 
 CORS_ALLOW_ALL_ORIGINS = True
 
