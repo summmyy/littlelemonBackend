@@ -19,7 +19,7 @@ from rest_framework.routers import DefaultRouter
 from restaurant import views
 from django.conf import settings
 from django.conf.urls.static import static
-import production_settings
+
 
 router = DefaultRouter()
 router.register(r'tables', views.BookingViewSet)
@@ -31,7 +31,8 @@ urlpatterns = [
     path('restaurant/booking/',include(router.urls)),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
+    # path('media/', include(settings.Media_URL)),
 ]
 
 # for development server
