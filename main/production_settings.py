@@ -155,4 +155,4 @@ DJOSER = {
 WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 
 MEDIA_URL = '/media/menu-images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/menu-images/')
